@@ -51,4 +51,17 @@ public class MultiMessageConsumer
         metadata.offset());
     bars.add(bar);
   }
+
+  @KafkaHandler(isDefault = true)
+  void handleUnknown(
+      @Payload Object unknown,
+      @Header(KafkaHeaders.RECORD_METADATA) ConsumerRecordMetadata metadata)
+  {
+    log.info(
+        "Received an unknown message: {}",
+        unknown,
+        metadata.topic(),
+        metadata.partition(),
+        metadata.offset());
+  }
 }
