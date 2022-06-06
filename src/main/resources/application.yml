@@ -1,0 +1,14 @@
+spring:
+  kafka:
+    bootstrap-servers: :9092
+    consumer:
+      group-id: multi
+      auto-offset-reset: earliest
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.type.mapping: "foo:de.juplo.kafka.Foo,bar:de.juplo.kafka.Bar"
+        spring.json.trusted.packages: "de.juplo.kafka"
+logging:
+  level:
+    root: INFO
+
